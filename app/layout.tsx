@@ -87,6 +87,68 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://krishaiworks.com/#organization",
+      name: "KrishAIWorks",
+      url: "https://krishaiworks.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://krishaiworks.com/logo.png",
+        width: 512,
+        height: 512,
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://krishaiworks.com/#website",
+      url: "https://krishaiworks.com",
+      name: "KrishAIWorks",
+      description:
+        "AI-powered tools, productivity utilities, automation, chatbots, websites and custom digital solutions.",
+      publisher: {
+        "@id": "https://krishaiworks.com/#organization",
+      },
+      inLanguage: "en",
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://aistudyassistant.krishaiworks.com/#webapplication",
+      name: "AI Study Assistant",
+      url: "https://aistudyassistant.krishaiworks.com/",
+      description:
+        "AI Study Assistant by KrishAIWorks helps students learn, understand topics, summarize study material and improve their productivity with AI.",
+      applicationCategory: "EducationalApplication",
+      operatingSystem: "Any",
+      browserRequirements: "Requires a modern web browser.",
+      isPartOf: {
+        "@id": "https://krishaiworks.com/#website",
+      },
+      publisher: {
+        "@id": "https://krishaiworks.com/#organization",
+      },
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://aistudyassistant.krishaiworks.com/#webpage",
+      url: "https://aistudyassistant.krishaiworks.com/",
+      name: "AI Study Assistant | Study Smarter with AI",
+      description:
+        "AI Study Assistant by KrishAIWorks helps students learn, understand topics, summarize study material and improve their productivity with AI.",
+      isPartOf: {
+        "@id": "https://krishaiworks.com/#website",
+      },
+      about: {
+        "@id": "https://aistudyassistant.krishaiworks.com/#webapplication",
+      },
+      inLanguage: "en",
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -96,6 +158,13 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd),
+          }}
+        />
 
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-BS6TSMM1ZR"
